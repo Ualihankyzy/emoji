@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Emoji Hub</title>
+    <link rel="stylesheet" href="../src/css/style.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-50">
+    <header class="bg-gray-50 px-14 shadow-md">
+      <div class="flex items-center justify-between mt-4">
+        <img
+          class="size-12 mb-4"
+          src="../src/icons/Image_10.09.2025_at_09.42-removebg-preview.png"
+          alt="Logo"
+        />
+        <nav class="hidden xl:flex gap-10">
+          <a
+            href="index.html"
+            class="mb-6 shadow-lg border bg-indigo-600 text-white w-24 h-8 rounded-2xl text-center hover:bg-indigo-700 transition"
+          >
+            Home
+          </a>
+          <a
+            href="catalog.html"
+            class="shadow-lg border bg-indigo-600 text-white w-24 h-8 rounded-2xl text-center hover:bg-indigo-700 transition"
+          >
+            Catalog
+          </a>
+          <a
+            href="#"
+            class="shadow-lg border bg-indigo-600 text-white w-24 h-8 rounded-2xl text-center hover:bg-indigo-700 transition"
+          >
+            Favorites
+          </a>
+        </nav>
+
+        <button
+          class="xl:hidden text-indigo-600 focus:outline-none mb-5"
+          onclick="document.getElementById('mobileMenu').classList.toggle('hidden')"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-8 w-8"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <div id="mobileMenu" class="hidden xl:hidden flex flex-col gap-4 mt-4">
+        <a
+          href="index.html"
+          class="flex items-center justify-center shadow-lg border bg-indigo-600 text-white rounded-2xl px-4 py-2 text-center hover:bg-indigo-700 transition mb-2"
+        >
+          Home
+        </a>
+        <a
+          href="catalog.html"
+          class="flex items-center justify-center shadow-lg border bg-indigo-600 text-white rounded-2xl px-4 py-2 text-center hover:bg-indigo-700 transition mb-2"
+        >
+          Catalog
+        </a>
+        <a
+          href="#"
+          class="flex items-center justify-center shadow-lg border bg-indigo-600 text-white rounded-2xl px-4 py-2 text-center hover:bg-indigo-700 transition mb-8"
+        >
+          Favorites
+        </a>
+      </div>
+    </header>
+    <section class="">
+      <div class="mt-8 mx-4 md:mx-14 flex flex-wrap items-center gap-4">
+        <!-- Іздеу -->
+        <div class="relative w-full md:w-[400px]">
+          <span
+            class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1110.5 3a7.5 7.5 0 016.15 13.65z"
+              />
+            </svg>
+          </span>
+          <input
+            id="searchInput"
+            class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-2xl shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+            type="text"
+            placeholder="Search the emoji"
+          />
+        </div>
+
+        <!-- Әріп фильтрі -->
+        <div>
+          <select
+            id="letterFilter"
+            class="border border-gray-300 rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          >
+            <option>Filter</option>
+            <option>A</option>
+            <option>B</option>
+            <option>C</option>
+            <option>D</option>
+            <option>E</option>
+            <option>F</option>
+            <option>G</option>
+            <option>H</option>
+            <option>I</option>
+            <option>J</option>
+            <option>K</option>
+            <option>L</option>
+            <option>M</option>
+            <option>N</option>
+            <option>O</option>
+            <option>P</option>
+            <option>Q</option>
+            <option>R</option>
+            <option>S</option>
+            <option>T</option>
+            <option>U</option>
+            <option>V</option>
+            <option>W</option>
+            <option>X</option>
+            <option>Y</option>
+            <option>Z</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="categoryButtons" class="flex flex-wrap gap-3 mt-6 mx-4 md:mx-14">
+        <button
+          data-category="all"
+          class="filter-btn bg-indigo-600 text-white px-4 py-2 rounded-2xl shadow hover:bg-indigo-700"
+        >
+          All
+        </button>
+        <button
+          data-category="smileys and people"
+          class="filter-btn bg-gray-200 px-4 py-2 rounded-2xl shadow hover:bg-indigo-200"
+        >
+          Smileys
+        </button>
+        <button
+          data-category="animals and nature"
+          class="filter-btn bg-gray-200 px-4 py-2 rounded-2xl shadow hover:bg-indigo-200"
+        >
+          Animals
+        </button>
+        <button
+          data-category="food and drink"
+          class="filter-btn bg-gray-200 px-4 py-2 rounded-2xl shadow hover:bg-indigo-200"
+        >
+          Food
+        </button>
+        <button
+          data-category="activities"
+          class="filter-btn bg-gray-200 px-4 py-2 rounded-2xl shadow hover:bg-indigo-200"
+        >
+          Activity
+        </button>
+        <button
+          data-category="travel and places"
+          class="filter-btn bg-gray-200 px-4 py-2 rounded-2xl shadow hover:bg-indigo-200"
+        >
+          Travel
+        </button>
+        <button
+          data-category="flags"
+          class="filter-btn bg-gray-200 px-4 py-2 rounded-2xl shadow hover:bg-indigo-200"
+        >
+          Flags
+        </button>
+        <button
+          data-category="symbols"
+          class="filter-btn bg-gray-200 px-4 py-2 rounded-2xl shadow hover:bg-indigo-200"
+        >
+          Symbols
+        </button>
+        <button
+          data-category="objects"
+          class="filter-btn bg-gray-200 px-4 py-2 rounded-2xl shadow hover:bg-indigo-200"
+        >
+          Objects
+        </button>
+      </div>
+
+      <div
+        id="emojiList"
+        class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 mx-4 md:mx-14 mt-6"
+      ></div>
+    </section>
+
+    <script>
+      const categoryMap = {
+        all: "all",
+        smileys: "smileys and people",
+        animals: "animals & nature",
+        food: "food & drink",
+        activity: "activities",
+        travel: "travel & places",
+        flags: "flags",
+        cars: "cars & transport",
+        symbols: "symbols",
+        objects: "objects",
+        people: "smileys and people",
+        nature: "animals & nature",
+      };
+      let allEmojis = [];
+
+      async function loadEmojis() {
+        try {
+          const response = await fetch("http://localhost:3000/api/emojis");
+          const emojis = await response.json();
+          allEmojis = emojis;
+          renderEmojis(allEmojis);
+        } catch (error) {
+          console.error("Error while loading emojis:", error);
+        }
+      }
+
+      function renderEmojis(emojis) {
+        const container = document.getElementById("emojiList");
+        container.innerHTML = "";
+
+        if (emojis.length === 0) {
+          container.innerHTML = `<p class="text-gray-500 col-span-full text-center text-lg">No emojis found 😢</p>`;
+          return;
+        }
+
+        emojis.forEach((emoji) => {
+          const card = document.createElement("div");
+          card.className =
+            " to-indigo-100 shadow-lg rounded-2xl p-6 flex flex-col items-center justify-center hover:scale-105 transform transition duration-300";
+
+          card.innerHTML = `
+        <div class="text-5xl mb-3">${emoji.htmlCode[0]}</div>
+        <p class="font-bold text-gray-800 text-center mb-1">${emoji.name
+          .split(" ")
+          .slice(0, 3)
+          .join(" ")}</p>
+        <p class="text-sm text-indigo-600 italic">${emoji.category}</p>
+      `;
+
+          container.appendChild(card);
+        });
+      }
+
+      function applyFilters() {
+        const searchValue = document
+          .getElementById("searchInput")
+          .value.toLowerCase();
+        const selectedLetter = document.getElementById("letterFilter").value;
+        const activeCategoryBtn = document.querySelector(
+          "#categoryButtons .filter-btn.bg-indigo-600"
+        );
+        const category = activeCategoryBtn
+          ?.getAttribute("data-category")
+          .toLowerCase();
+
+        let filtered = allEmojis;
+
+        if (category && category !== "all") {
+          filtered = filtered.filter(
+            (emoji) => emoji.category.toLowerCase() === category
+          );
+        }
+
+        if (searchValue) {
+          filtered = filtered.filter((emoji) =>
+            emoji.name.toLowerCase().includes(searchValue)
+          );
+        }
+
+        if (selectedLetter !== "Filter") {
+          filtered = filtered.filter((emoji) =>
+            emoji.name.toLowerCase().startsWith(selectedLetter.toLowerCase())
+          );
+        }
+
+        renderEmojis(filtered);
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        loadEmojis();
+
+        document
+          .querySelectorAll("#categoryButtons .filter-btn")
+          .forEach((btn) => {
+            btn.addEventListener("click", () => {
+              document
+                .querySelectorAll("#categoryButtons .filter-btn")
+                .forEach((b) => {
+                  b.classList.remove("bg-indigo-600", "text-white");
+                  b.classList.add("bg-gray-200");
+                });
+
+              btn.classList.remove("bg-gray-200");
+              btn.classList.add("bg-indigo-600", "text-white");
+
+              applyFilters();
+            });
+          });
+
+        document
+          .getElementById("searchInput")
+          .addEventListener("input", applyFilters);
+
+        document
+          .getElementById("letterFilter")
+          .addEventListener("change", applyFilters);
+      });
+    </script>
+  </body>
+</html>
