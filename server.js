@@ -5,7 +5,7 @@ import cors from "cors";
 const app = express();
 app.use(cors());
 
-// API маршруты
+
 app.get("/api/emojis", async (req, res) => {
   try {
     const response = await fetch("https://emojihub.yurace.pro/api/all");
@@ -18,4 +18,4 @@ app.get("/api/emojis", async (req, res) => {
 });
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));
+app.listen(PORT, () => console.log(` Server running on port ${PORT}`));
