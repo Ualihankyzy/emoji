@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Emoji Hub</title>
+    <link rel="stylesheet" href="../src/css/style.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-50 flex flex-col min-h-screen">
+    <header class="bg-gray-50 px-14 shadow-md">
+      <div class="flex items-center justify-between mt-4">
+        <img class="size-12 mb-4" src="src/icons/img.png" alt="Logo" />
+        <nav class="hidden xl:flex gap-10">
+          <a
+            style="background-color: #745eb6"
+            href="index.html"
+            class="p-0.5 text-white w-24 h-8 rounded-2xl text-center hover:bg-indigo-700 transition"
+          >
+            Home
+          </a>
+          <a
+            style="background-color: #745eb6"
+            href="catalog.html"
+            class="p-0.5 text-white w-24 h-8 rounded-2xl text-center hover:bg-indigo-700 transition"
+          >
+            Catalog
+          </a>
+          <a
+            style="background-color: #745eb6"
+            href="favorites.html"
+            class="p-0.5 text-white w-24 h-8 rounded-2xl text-center hover:bg-indigo-700 transition"
+          >
+            Favorites
+          </a>
+        </nav>
+
+        <button
+          class="xl:hidden text-indigo-600 focus:outline-none mb-5"
+          onclick="document.getElementById('mobileMenu').classList.toggle('hidden')"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-8 w-8"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <div id="mobileMenu" class="hidden xl:hidden flex flex-col gap-4 mt-4">
+        <a
+          style="background-color: #745eb6"
+          href="index.html"
+          class="flex items-center justify-center text-white rounded-2xl px-4 py-2 text-center hover:bg-indigo-700 transition mb-2"
+        >
+          Home
+        </a>
+        <a
+          style="background-color: #745eb6"
+          href="catalog.html"
+          class="flex items-center justify-center text-white rounded-2xl px-4 py-2 text-center hover:bg-indigo-700 transition mb-2"
+        >
+          Catalog
+        </a>
+        <a
+          style="background-color: #745eb6"
+          href="favorites.html"
+          class="flex items-center justify-center text-white rounded-2xl px-4 py-2 text-center hover:bg-indigo-700 transition mb-8"
+        >
+          Favorites
+        </a>
+      </div>
+    </header>
+
+    <section class="mt-8 mx-4 md:mx-14 flex-grow">
+      <div
+        id="favoritesList"
+        class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6"
+      ></div>
+    </section>
+
+    <section
+      class="w-full mt-24 p-8"
+      style="background: linear-gradient(180deg, #f7f8fb 0%, #b3aaf1 100%)"
+    >
+      <div class="text-center">
+        <h1
+          style="color: #745eb6; font-family: 'Abhaya Libre'"
+          class="font-bold text-5xl mt-12"
+        >
+          Request More Information
+        </h1>
+        <p style="color: #745eb6; font-family: 'Abhaya Libre'" class="mt-6">
+          Explore, copy, and share top emojis instantly — simple, <br />
+          fun, free, and fast!
+        </p>
+        <button
+          style="background-color: #968dd4"
+          class="text-white w-48 h-12 rounded-2xl text-center mt-12"
+        >
+          Contact us
+        </button>
+        <hr class="w-[1200px] border-t-1 border-gray-400 my-4 mx-auto mt-12" />
+      </div>
+      <footer class="py-8">
+        <div
+          class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center"
+        >
+          <div class="text-gray-700 text-sm mb-4 md:mb-0">
+            &copy; 2025 Emoji Hub. All rights reserved.
+          </div>
+          <div class="flex gap-6">
+            <a href="#" class="text-gray-700">Privacy Policy</a>
+            <a href="#" class="text-gray-700">Terms of Service</a>
+            <a href="#" class="text-gray-700">Contact</a>
+          </div>
+        </div>
+      </footer>
+    </section>
+
+    <script src="../app.js"></script>
+    <script>
+      function renderFavorites() {
+        const container = document.getElementById("favoritesList");
+        container.innerHTML = "";
+
+        let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+        if (favorites.length === 0) {
+          container.innerHTML = `<p class="text-gray-500 col-span-full text-center text-lg">No favorites yet </p>`;
+          return;
+        }
+
+        favorites.forEach((emoji, index) => {
+          const card = document.createElement("div");
+          card.className =
+            "relative to-indigo-100 shadow-lg rounded-2xl p-6 flex flex-col items-center justify-center hover:scale-105 transform transition duration-300";
+
+          card.innerHTML = `
+            <div class="text-5xl mb-3">${emoji.htmlCode[0]}</div>
+            <p class="font-bold text-gray-800 text-center mb-1">${emoji.name
+              .split(" ")
+              .slice(0, 3)
+              .join(" ")}</p>
+            <p class="text-sm text-indigo-600 italic mb-2">${emoji.category}</p>
+            <button class="remove-btn absolute top-2 right-2">
+              <svg xmlns="http://www.w3.org/2000/svg" 
+                   class="h-6 w-6 text-red-500" 
+                   fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 
+                         2 12.28 2 8.5 
+                         2 5.42 4.42 3 7.5 3 
+                         c1.74 0 3.41 0.81 4.5 2.09 
+                         C13.09 3.81 14.76 3 16.5 3 
+                         19.58 3 22 5.42 22 8.5 
+                         c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg>
+            </button>
+          `;
+
+          const removeBtn = card.querySelector(".remove-btn");
+          removeBtn.addEventListener("click", () => {
+            favorites = favorites.filter((fav) => fav.name !== emoji.name);
+            localStorage.setItem("favorites", JSON.stringify(favorites));
+            renderFavorites(); // тізімді қайта жүктейміз
+          });
+
+          container.appendChild(card);
+        });
+      }
+
+      document.addEventListener("DOMContentLoaded", renderFavorites);
+
+      function toggleFavorite(emoji, button) {
+        const exists = favorites.some((fav) => fav.name === emoji.name);
+
+        if (exists) {
+          favorites = favorites.filter((fav) => fav.name !== emoji.name);
+        } else {
+          favorites.push(emoji);
+        }
+
+        localStorage.setItem("favorites", JSON.stringify(favorites));
+
+        const icon = button.querySelector("svg");
+        if (exists) {
+          icon.classList.remove("text-red-500");
+          icon.classList.add("text-gray-400");
+        } else {
+          icon.classList.remove("text-gray-400");
+          icon.classList.add("text-red-500");
+        }
+      }
+    </script>
+  </body>
+</html>
