@@ -47,4 +47,4 @@ The project is hosted on GitHub Pages:
 
 ##  Author
 
-Created by *Ualikhan Kyzy*
+Created by *Ualikhankyzy Aqgul*
