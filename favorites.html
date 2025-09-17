@@ -11,7 +11,7 @@
     <header class="bg-gray-50 px-14 shadow-md">
       <div class="flex items-center justify-between mt-4">
         <img class="size-12 mb-4" src="src/icons/img.png" alt="Logo" />
-        <nav class="hidden xl:flex gap-10">
+        <nav class="hidden xl:flex gap-10 mb-4">
           <a
             style="background-color: #745eb6"
             href="index.html"
@@ -81,12 +81,14 @@
       </div>
     </header>
 
+  
     <section class="mt-8 mx-4 md:mx-14 flex-grow">
       <div
         id="favoritesList"
         class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6"
       ></div>
     </section>
+
 
     <section
       class="w-full mt-24 p-8"
@@ -127,7 +129,7 @@
       </footer>
     </section>
 
-    <script src="../app.js"></script>
+
     <script>
       function renderFavorites() {
         const container = document.getElementById("favoritesList");
@@ -136,14 +138,14 @@
         let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
         if (favorites.length === 0) {
-          container.innerHTML = `<p class="text-gray-500 col-span-full text-center text-lg">No favorites yet </p>`;
+          container.innerHTML = `<p class="text-gray-500 col-span-full text-center text-lg">No favorites yet</p>`;
           return;
         }
 
-        favorites.forEach((emoji, index) => {
+        favorites.forEach((emoji) => {
           const card = document.createElement("div");
           card.className =
-            "relative to-indigo-100 shadow-lg rounded-2xl p-6 flex flex-col items-center justify-center hover:scale-105 transform transition duration-300";
+            "relative bg-white shadow-lg rounded-2xl p-6 flex flex-col items-center justify-center hover:scale-105 transform transition duration-300";
 
           card.innerHTML = `
             <div class="text-5xl mb-3">${emoji.htmlCode[0]}</div>
@@ -152,26 +154,34 @@
               .slice(0, 3)
               .join(" ")}</p>
             <p class="text-sm text-indigo-600 italic mb-2">${emoji.category}</p>
-            <button class="remove-btn absolute top-2 right-2">
-              <svg xmlns="http://www.w3.org/2000/svg" 
-                   class="h-6 w-6 text-red-500" 
-                   fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 21.35l-1.45-1.32C5.4 15.36 
-                         2 12.28 2 8.5 
-                         2 5.42 4.42 3 7.5 3 
-                         c1.74 0 3.41 0.81 4.5 2.09 
-                         C13.09 3.81 14.76 3 16.5 3 
-                         19.58 3 22 5.42 22 8.5 
-                         c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-              </svg>
-            </button>
+
+            <div class="flex gap-3 mt-3">
+              <button class="copy-btn bg-indigo-500 text-white px-3 py-1 rounded-lg text-sm hover:bg-indigo-600">Copy</button>
+              <button class="delete-btn bg-red-500 text-white px-3 py-1 rounded-lg text-sm hover:bg-red-600">Delete</button>
+            </div>
           `;
 
-          const removeBtn = card.querySelector(".remove-btn");
-          removeBtn.addEventListener("click", () => {
+          const copyBtn = card.querySelector(".copy-btn");
+          copyBtn.addEventListener("click", () => {
+            const emojiSymbol = emoji.htmlCode
+              .map((code) =>
+                String.fromCodePoint(code.replace("&#", "").replace(";", ""))
+              )
+              .join("");
+
+            navigator.clipboard.writeText(emojiSymbol).then(() => {
+              copyBtn.textContent = "Copied!";
+              setTimeout(() => {
+                copyBtn.textContent = "Copy";
+              }, 1500);
+            });
+          });
+
+          const deleteBtn = card.querySelector(".delete-btn");
+          deleteBtn.addEventListener("click", () => {
             favorites = favorites.filter((fav) => fav.name !== emoji.name);
             localStorage.setItem("favorites", JSON.stringify(favorites));
-            renderFavorites(); // тізімді қайта жүктейміз
+            renderFavorites();
           });
 
           container.appendChild(card);
@@ -179,27 +189,6 @@
       }
 
       document.addEventListener("DOMContentLoaded", renderFavorites);
-
-      function toggleFavorite(emoji, button) {
-        const exists = favorites.some((fav) => fav.name === emoji.name);
-
-        if (exists) {
-          favorites = favorites.filter((fav) => fav.name !== emoji.name);
-        } else {
-          favorites.push(emoji);
-        }
-
-        localStorage.setItem("favorites", JSON.stringify(favorites));
-
-        const icon = button.querySelector("svg");
-        if (exists) {
-          icon.classList.remove("text-red-500");
-          icon.classList.add("text-gray-400");
-        } else {
-          icon.classList.remove("text-gray-400");
-          icon.classList.add("text-red-500");
-        }
-      }
     </script>
   </body>
 </html>
