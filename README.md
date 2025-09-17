@@ -1,22 +1,22 @@
-# 🎉 Emoji Hub
+# Emoji Hub
 
 Emoji Hub is a simple and fun web app that allows you to browse, copy, and save your favorite emojis.
 
-## 🚀 Features
+##  Features
 
-* 🔍 Browse and search emojis
-* ⭐ Save emojis to **Favorites**
-* 📋 Copy emojis with one click
-* ❌ Remove emojis from Favorites
+*  Browse and search emojis
+*  Save emojis to **Favorites**
+*  Copy emojis with one click
+*  Remove emojis from Favorites
 
-## 🛠️ Technologies
+##  Technologies
 
 * **HTML5**
 * **CSS3** (TailwindCSS + custom styles)
 * **JavaScript (Vanilla)**
 * **LocalStorage** (to store favorites)
 
-## 📂 Project Structure
+##  Project Structure
 
 ```
 project/
@@ -31,12 +31,12 @@ project/
 └── README.md
 ```
 
-## 🌐 Live Demo
+##  Live Demo
 
 The project is hosted on GitHub Pages:
-👉 [Emoji Hub Live Demo](https://ualihankyzy.github.io/)
+ [Emoji Hub Live Demo](https://ualihankyzy.github.io/emoji/index.html)
 
-## ⚡ How to Use
+##  How to Use
 
 1. Clone the repository:
 
@@ -45,6 +45,6 @@ The project is hosted on GitHub Pages:
    ```
 2. Open `index.html` in your browser to start.
 
-## 📌 Author
+##  Author
 
-👩‍💻 Created by *Ualikhan Kyzy*
+Created by *Ualikhan Kyzy*
